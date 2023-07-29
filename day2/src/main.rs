@@ -1,12 +1,12 @@
 fn main() {
-    let result = get_result();
+    let result = get_result_one();
     let result_two = get_result_two();
 
     println!("Result 1 {result:?}");
     println!("Result 2 {result_two:?}");
 }
 
-fn get_result() -> u64 {
+fn get_result_one() -> u64 {
     let lines = include_str!("input.txt")
         .lines()
         .map(|line| match line {
@@ -44,4 +44,20 @@ fn get_result_two() -> u64 {
         .sum::<u64>();
 
     lines
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{get_result_one, get_result_two};
+    #[test]
+    fn test_get_result_one() {
+        let result = get_result_one();
+        assert_eq!(result, 11150)
+    }
+
+    #[test]
+    fn test_get_result_two() {
+        let result = get_result_two();
+        assert_eq!(result, 8295);
+    }
 }
